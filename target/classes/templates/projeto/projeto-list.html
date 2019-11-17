@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header :: headerBlock">
+<style type="text/css"></style>
+</head>
+
+<body>
+
+	<div th:replace="header :: navBar"></div>
+
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">Home</li>
+			<li class="breadcrumb-item">Cadastro</li>
+			<li class="breadcrumb-item active" aria-current="page"><a href="">Lista de Projetos</a></li>
+		</ol>
+	</nav>
+
+	<div class="contatiner col-sm-12 col-md-6 col-md-offset-2">
+		<table class="table table-striped table-bordered table-sm">
+			<thead class="table-success">
+				<tr>
+				  <th>Nome do Projeto</th>
+				  <th>Descrição</th>
+				  <th>Candidato</th>
+				  <th>Chapa</th>
+				  <th>Cargo</th>
+				  <th>Ações</th>
+				</tr>
+			</thead>
+			<tr th:each="proj : ${lista}">
+			    <td th:text="${proj.nomeDoProjeto}"></td>
+				<td th:text="${proj.descricao}"></td>
+				<td th:text="${proj.candidato.nome}"></td>
+				<td th:text="${proj.candidato.chapa}"></td>
+				<td th:text="${proj.candidato.eleicao.descricao}"></td>	
+				<td><a th:href="@{/editarProjeto(id=${proj.id})}">Editar</a>&nbsp;&nbsp; 
+				<a th:href="@{/removerProjeto(id=${proj.id})}">Remover</a></td>
+			</tr>
+		</table>
+		<hr />
+		<a href="/exibirFormProjeto" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Novo Projeto</a>
+		
+	</div>
+</body>
+</html>

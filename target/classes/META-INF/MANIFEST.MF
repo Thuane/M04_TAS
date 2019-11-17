@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: M01_TAS
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: thuane
+Implementation-Vendor-Id: com.example
+Build-Jdk: 1.8.0_231
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/M01_TAS
+Created-By: Maven Integration for Eclipse
+

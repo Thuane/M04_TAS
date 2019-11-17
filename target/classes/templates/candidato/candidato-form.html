@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header :: headerBlock">
+<style type="text/css"></style>
+</head>
+
+<body>
+
+	<div th:replace="header :: navBar"></div>
+
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">Home</li>
+			<li class="breadcrumb-item">Cadastro</li>
+			<li class="breadcrumb-item active" aria-current="page"><a href="">Cadastrar Candidato</a></li>
+		</ol>
+	</nav>
+
+	<div class="container col-sm-12 col-md-6 col-md-offset-2" >
+		<form action="/salvarCandidato" method="post" th:object="${candidato}">
+			<input type="hidden" th:field="*{id}">
+			<div class="form-group">
+				<label for="nome">Nome</label> 
+				<input type="text" class="form-control" id="nome" placeholder="Nome do candidato" th:field="*{nome}">
+			</div>
+			<div class="form-group">
+				<label for="eleicao">Eleição</label> 
+				<select id="eleicao" class="form-control"  th:field="*{eleicao}">
+					<option value="0">Selecione uma Eleição</option>
+					<option th:each="cand : ${listaEleicao}" th:text="${cand.descricao}" th:value="${cand.id}" />
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="chapa">Chapa</label> 
+				<input type="text" class="form-control" id="chapa"
+					th:field="*{chapa}" 
+					placeholder="nome da chapa">
+			</div>
+			<div th:if="${#fields.hasErrors('*')}">
+			  <ul>
+			     <li th:each="erro : ${#fields.errors('*')}" th:text="${erro}">
+			  </ul>
+			</div>
+			<button type="submit" class="btn btn-primary">Enviar</button>
+			<hr/>
+			<a href="/listarCandidatos" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Voltar para a lista</a>
+			
+		</form>
+	</div>
+
+</body>
+</html>
